@@ -197,3 +197,5 @@ Adaptive Learning logic tailors quizzes and suggestions to individual users.
 All data is stored or retrieved from a Database Layer that also handles user credentials.
 Publisher/Institution integration ensures legal usage and licensing.
 Monitoring & Security ensures stable operation and compliance.
+
+We're using a next.js framework and the website should be built around this

@@ -1,15 +1,66 @@
 import Layout from '../src/components/layout/Layout'
 import FileUpload from '@/components/FileUpload'
 import styles from '../src/styles/home.module.css'
+import { useState } from 'react'
 
 export default function Home() {
+  const [expandedFeature, setExpandedFeature] = useState(null)
+
+  const features = [
+    {
+      title: "Smart Summaries",
+      description: "Get AI-powered chapter summaries and key points",
+      expandedContent: (
+        <div className={styles["expanded-content"]}>
+          <img src="/images/summary-demo.gif" alt="Summary Demo" />
+          <p>Our AI analyzes your textbook to create concise, intelligent summaries that highlight key concepts and important details. Perfect for quick review or deep understanding.</p>
+          <ul>
+            <li>Chapter breakdowns</li>
+            <li>Key concept highlighting</li>
+            <li>Visual concept maps</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      title: "Interactive Quizzes",
+      description: "Test your knowledge with adaptive learning",
+      expandedContent: (
+        <div className={styles["expanded-content"]}>
+          <img src="/images/quiz-demo.gif" alt="Quiz Demo" />
+          <p>Dynamic quizzes that adapt to your learning style and knowledge level, ensuring you master the material effectively.</p>
+          <ul>
+            <li>Personalized questions</li>
+            <li>Real-time feedback</li>
+            <li>Progress tracking</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      title: "Study Assistant",
+      description: "Ask questions and get instant explanations",
+      expandedContent: (
+        <div className={styles["expanded-content"]}>
+          <img src="/images/assistant-demo.gif" alt="Assistant Demo" />
+          <p>Your personal AI tutor that answers questions, explains concepts, and helps you understand difficult topics.</p>
+          <ul>
+            <li>24/7 availability</li>
+            <li>Contextual explanations</li>
+            <li>Multiple learning approaches</li>
+          </ul>
+        </div>
+      )
+    }
+  ]
+
+  const toggleFeature = (index) => {
+    setExpandedFeature(expandedFeature === index ? null : index)
+  }
+  
   return (
     <Layout>
-      <div className="hero-section" style={{
-        backgroundImage: "url('/images/hero-bg.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
+      <div className={`hero-section ${expandedFeature !== null ? styles["dimmed"] : ''}`}>
         <div className={styles["hero-content"]}>
           <h1>Transform Your Learning Experience</h1>
           <p className="mission-statement">
@@ -18,18 +69,17 @@ export default function Home() {
             and adaptive quizzes to help you master your coursework efficiently.
           </p>
           <div className={styles["features-grid"]}>
-            <div className={styles["feature-card"]}>
-              <h3>Smart Summaries</h3>
-              <p>Get AI-powered chapter summaries and key points</p>
-            </div>
-            <div className={styles["feature-card"]}>
-              <h3>Interactive Quizzes</h3>
-              <p>Test your knowledge with adaptive learning</p>
-            </div>
-            <div className={styles["feature-card"]}>
-              <h3>Study Assistant</h3>
-              <p>Ask questions and get instant explanations</p>
-            </div>
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`${styles["feature-card"]} ${expandedFeature === index ? styles["expanded"] : ''}`}
+                onClick={() => toggleFeature(index)}
+              >
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+                {expandedFeature === index && feature.expandedContent}
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles["upload-section"]}>

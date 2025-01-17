@@ -1,35 +1,64 @@
-import { useState, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useState, useRef } from 'react'
+import { useRouter } from 'next/router'
 
-export default function FileUpload() {
-  const [file, setFile] = useState(null)
+export default function FileUpload({ onFileSelect }) {
+  const [isDragging, setIsDragging] = useState(false)
+  const fileInputRef = useRef(null)
+  const router = useRouter()
 
-  const onDrop = useCallback(acceptedFiles => {
-    setFile(acceptedFiles[0])
-  }, [])
+  const handleDragOver = (e) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'application/pdf': ['.pdf'],
-      'application/epub+zip': ['.epub']
+  const handleDragLeave = () => {
+    setIsDragging(false)
+  }
+
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setIsDragging(false)
+    const file = e.dataTransfer.files[0]
+    processFile(file)
+  }
+
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0]
+    processFile(file)
+  }
+
+  const processFile = (file) => {
+    if (file && file.type === 'application/pdf') {
+      if (onFileSelect) {
+        onFileSelect(file)
+      }
+      router.push(`/textbook-viewer/${encodeURIComponent(file.name)}`)
     }
-  })
+  }
+
+  const openFileDialog = () => {
+    fileInputRef.current.click()
+  }
 
   return (
-    <div className="upload-container">
-      <div {...getRootProps()} className="dropzone">
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop your textbook here...</p>
-        ) : (
-          <div>
-            <p>Drag and drop your textbook here, or click to browse</p>
-            <p className="file-types">Supports PDF and EPUB formats</p>
-          </div>
-        )}
+    <div 
+      className={`upload-zone ${isDragging ? 'dragging' : ''}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      onClick={openFileDialog}
+    >
+      <input 
+        type="file" 
+        ref={fileInputRef}
+        accept=".pdf" 
+        onChange={handleFileSelect}
+        style={{ display: 'none' }}
+      />
+      <div className="upload-content">
+        <p>Drag & drop your textbook here</p>
+        <p>or click to select file</p>
       </div>
-      {file && <p className="selected-file">Selected: {file.name}</p>}
     </div>
   )
 }

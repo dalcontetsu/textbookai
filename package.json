@@ -6,7 +6,8 @@
     "next": "^15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-dropzone": "^14.3.5"
+    "react-dropzone": "^14.3.5",
+    "react-pdf": "^9.2.1"
   },
   "name": "textbookai",
   "version": "1.0.0",

@@ -60,7 +60,7 @@ export default function Home() {
   
   return (
     <Layout>
-      <div className={`hero-section ${expandedFeature !== null ? styles["dimmed"] : ''}`}>
+      <div className="hero-section">
         <div className={styles["hero-content"]}>
           <h1>Transform Your Learning Experience</h1>
           <p className="mission-statement">

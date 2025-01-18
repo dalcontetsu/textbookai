@@ -1,6 +1,6 @@
 import Layout from '../src/components/layout/Layout'
 import FileUpload from '@/components/FileUpload'
-import styles from '../src/styles/home.module.css'
+import styles from '../src/styles/Home.module.css'
 import { useState } from 'react'
 
 export default function Home() {
@@ -68,21 +68,26 @@ export default function Home() {
             Using advanced AI, we create personalized study materials, smart summaries, 
             and adaptive quizzes to help you master your coursework efficiently.
           </p>
-          <div className={styles["features-grid"]}>
-            {features.map((feature, index) => (
-              <div 
-                key={index}
-                className={`${styles["feature-card"]} ${expandedFeature === index ? styles["expanded"] : ''}`}
-                onClick={() => toggleFeature(index)}
-              >
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-                {expandedFeature === index && feature.expandedContent}
-              </div>
-            ))}
+          <div className={styles["features-container"]}>
+            <div className={styles["features-grid"]}>
+              {features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className={`${styles["feature-card"]} ${expandedFeature === index ? styles["expanded"] : ''}`}
+                  onClick={() => toggleFeature(index)}
+                >
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                  {expandedFeature === index && feature.expandedContent}
+                </div>
+              ))}
+            </div>
+            <div className={`${styles["expanded-content-container"]} ${expandedFeature !== null ? styles["visible"] : ''}`}>
+              {expandedFeature !== null && features[expandedFeature].expandedContent}
+            </div>
           </div>
         </div>
-        <div className={styles["upload-section"]}>
+        <div className={`${styles["upload-section"]} ${expandedFeature !== null ? styles["hidden"] : ''}`}>
           <h2>start learning smarter</h2>
           <FileUpload />
         </div>

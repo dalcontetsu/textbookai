@@ -11,7 +11,7 @@ export default function Home() {
       title: "Smart Summaries",
       description: "Get AI-powered chapter summaries and key points",
       expandedContent: (
-        <div className={styles["expanded-content"]}>
+        <div className={`${styles["expanded-content"]} ${expandedFeature === expandedFeature ? styles["active"] : ''}`}>
           <img src="/images/summary-demo.gif" alt="Summary Demo" />
           <p>Our AI analyzes your textbook to create concise, intelligent summaries that highlight key concepts and important details. Perfect for quick review or deep understanding.</p>
           <ul>
@@ -26,7 +26,7 @@ export default function Home() {
       title: "Interactive Quizzes",
       description: "Test your knowledge with adaptive learning",
       expandedContent: (
-        <div className={styles["expanded-content"]}>
+        <div className={`${styles["expanded-content"]} ${expandedFeature === expandedFeature ? styles["active"] : ''}`}>
           <img src="/images/quiz-demo.gif" alt="Quiz Demo" />
           <p>Dynamic quizzes that adapt to your learning style and knowledge level, ensuring you master the material effectively.</p>
           <ul>
@@ -41,7 +41,7 @@ export default function Home() {
       title: "Study Assistant",
       description: "Ask questions and get instant explanations",
       expandedContent: (
-        <div className={styles["expanded-content"]}>
+        <div className={`${styles["expanded-content"]} ${expandedFeature === expandedFeature ? styles["active"] : ''}`}>
           <img src="/images/assistant-demo.gif" alt="Assistant Demo" />
           <p>Your personal AI tutor that answers questions, explains concepts, and helps you understand difficult topics.</p>
           <ul>
@@ -81,9 +81,6 @@ export default function Home() {
                   {expandedFeature === index && feature.expandedContent}
                 </div>
               ))}
-            </div>
-            <div className={`${styles["expanded-content-container"]} ${expandedFeature !== null ? styles["visible"] : ''}`}>
-              {expandedFeature !== null && features[expandedFeature].expandedContent}
             </div>
           </div>
         </div>

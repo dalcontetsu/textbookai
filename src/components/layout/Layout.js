@@ -9,7 +9,7 @@ export default function Layout({ children }) {
         </div>
         
         <div className="nav-links">
-          <Link href="/about">About</Link>
+          <Link href="/about" className="nav-link">About</Link>
           <Link href="/team">Our Team</Link>
           <Link href="/careers">Careers</Link>
           <Link href="/contact">Contact</Link>

@@ -1,4 +1,3 @@
-import Layout from '../src/components/layout/Layout'
 import FileUpload from '@/components/FileUpload'
 import styles from '../src/styles/Home.module.css'
 import { useState } from 'react'
@@ -59,7 +58,6 @@ export default function Home() {
   }
   
   return (
-    <Layout>
       <div className="hero-section">
         <div className={styles["hero-content"]}>
           <h1>Transform Your Learning Experience</h1>
@@ -89,6 +87,5 @@ export default function Home() {
           <FileUpload />
         </div>
       </div>
-    </Layout>
   )
 }

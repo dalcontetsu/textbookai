@@ -1,33 +1,34 @@
 import Link from 'next/link'
+import styles from '../../styles/Layout.module.css'
 
 export default function Layout({ children }) {
   return (
-    <div>
-      <nav className="navbar">
-        <div className="logo">
+    <div className={styles.container}>
+      <nav className={styles.navbar}>
+        <div className={styles.logo}>
           <Link href="/">TextbookAI</Link>
         </div>
-        
-        <div className="nav-links">
-          <Link href="/about" className="nav-link">About</Link>
-          <Link href="/team">Our Team</Link>
-          <Link href="/careers">Careers</Link>
-          <Link href="/contact">Contact</Link>
+
+        <div className={styles.navLinks}>
+          <Link href="/about" className={styles.navLink}>About</Link>
+          <Link href="/team" className={styles.navLink}>Our Team</Link>
+          <Link href="/careers" className={styles.navLink}>Careers</Link>
+          <Link href="/contact" className={styles.navLink}>Contact</Link>
         </div>
 
-        <div className="auth-buttons">
+        <div className={styles.authButtons}>
           <Link href="/login">
-            <button className="login-btn">Log In</button>
+            <button className={styles.loginBtn}>Log In</button>
           </Link>
           <Link href="/signup">
-            <button className="signup-btn">Sign Up</button>
+            <button className={styles.signupBtn}>Sign Up</button>
           </Link>
         </div>
       </nav>
-      <main>{children}</main>
-      <footer>
-        <div className="footer-content">
-          <div className="footer-links">
+      <main className={styles.mainContent}>{children}</main>
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerLinks}>
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/terms">Terms of Service</Link>
           </div>

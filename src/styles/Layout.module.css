@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the page fills the viewport height */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .navLinks {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navLink {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #0070f3;
+  }
+  
+  .authButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .loginBtn, .signupBtn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .signupBtn {
+    background-color: #0070f3;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .mainContent {
+    flex: 1; /* Ensures the main content grows to fill space */
+    padding: 20px;
+  }
+  
+  .footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footerContent {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .footerLinks {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .footerLinks a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .footerLinks a:hover {
+    color: #0070f3;
+  }
+  

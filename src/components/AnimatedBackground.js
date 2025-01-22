@@ -41,8 +41,8 @@ const AnimatedBackground = () => {
         height: '100vh',
         zIndex: -1,
         background: `radial-gradient(circle at ${gradientPosition.x}px ${gradientPosition.y}px, 
-          rgba(157, 250, 203, 0.5) 0%, 
-          rgba(201, 248, 230, 0.5) 100%)`,
+          rgba(142, 231, 154, 0.5) 0%, 
+          rgba(255, 255, 255, 0.5) 100%)`,
         transition: 'background 0.3s ease'
       }}
     />

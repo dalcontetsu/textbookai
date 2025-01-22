@@ -58,34 +58,34 @@ export default function Home() {
   }
   
   return (
-      <div className="hero-section">
-        <div className={styles["hero-content"]}>
-          <h1>Transform Your Learning Experience</h1>
-          <p className="mission-statement">
-            TextbookAI turns your textbooks into interactive learning experiences. 
-            Using advanced AI, we create personalized study materials, smart summaries, 
-            and adaptive quizzes to help you master your coursework efficiently.
-          </p>
-          <div className={styles["features-container"]}>
-            <div className={styles["features-grid"]}>
-              {features.map((feature, index) => (
-                <div 
-                  key={index}
-                  className={`${styles["feature-card"]} ${expandedFeature === index ? styles["expanded"] : ''}`}
-                  onClick={() => toggleFeature(index)}
-                >
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                  {expandedFeature === index && feature.expandedContent}
-                </div>
-              ))}
-            </div>
+    <div className="hero-section">
+      <div className={styles["hero-content"]}>
+        <h1>Transform Your Learning Experience</h1>
+        <p className="mission-statement">
+          TextbookAI turns your textbooks into interactive learning experiences. 
+          Using advanced AI, we create personalized study materials, smart summaries, 
+          and adaptive quizzes to help you master your coursework efficiently.
+        </p>
+        <div className={styles["features-container"]}>
+          <div className={styles["features-grid"]}>
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`${styles["feature-card"]} ${expandedFeature === index ? styles["expanded"] : ''}`}
+                onClick={() => toggleFeature(index)}
+              >
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+                {expandedFeature === index && feature.expandedContent}
+              </div>
+            ))}
           </div>
         </div>
-        <div className={`${styles["upload-section"]} ${expandedFeature !== null ? styles["hidden"] : ''}`}>
-          <h2>start learning smarter</h2>
-          <FileUpload />
-        </div>
       </div>
+      <div className={`${styles["upload-section"]} ${expandedFeature !== null ? styles["hidden"] : ''}`}>
+        <h2>start learning smarter</h2>
+        <FileUpload />
+      </div>
+    </div>
   )
 }

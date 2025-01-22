@@ -1,0 +1,85 @@
+.careers-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.careers-intro {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.job-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #ffffff;
+  opacity: 1;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #fafafa;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.job-type {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.job-details {
+  display: flex;
+  gap: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.job-description {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.key-requirements {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.requirement-tag {
+  background: #f5f5f5;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.apply-button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.apply-button:hover {
+  background: #1557b0;
+}

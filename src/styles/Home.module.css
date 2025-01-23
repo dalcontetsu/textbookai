@@ -22,15 +22,6 @@
     padding-bottom: 275px; /* Space for expanded content */
   }
 
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    position: relative;
-    z-index: 2;
-    background: transparent;
-  }
-
   .expanded-content {
     opacity: 0;
     transform: scale(1);

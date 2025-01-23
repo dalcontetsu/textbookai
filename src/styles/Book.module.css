@@ -36,11 +36,11 @@
 /* Adjust book to show page thickness */
 .book {
   position: relative;
-  width: 800px;
-  height: 500px;
+  width: 1000px;
+  height: 600px;
   transform-style: preserve-3d;
   display: flex;
-  transform: rotateX(10deg) rotateY(-10deg);
+  transform: rotateX(10deg) rotateY(0deg);
 }
 
 .bookSpine {

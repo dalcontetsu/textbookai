@@ -9,7 +9,7 @@ export default function Book() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const totalPages = 10;
+  const totalPages = 0;
   const pageStack = Array.from({ length: totalPages }, (_, i) => i);
   
   const currentContent = bookContent[currentPage];

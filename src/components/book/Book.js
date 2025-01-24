@@ -9,6 +9,12 @@ export default function Book() {
   return (
     <div className={styles.bookWrapper}>
       <div className={styles.bookContainer}>
+        <div className={styles.hardcover}>
+          <div className={styles.coverFront} />
+          <div className={styles.coverSpine} />
+          <div className={styles.coverBack} />
+        </div>
+        
         <HTMLFlipBook 
           width={800}
           height={900}

@@ -81,3 +81,30 @@
   background: #34495e;
   color: #fff;
 }
+
+.hardcover {
+  position: absolute;
+  width: 1250px;  /* Slightly wider than page-flip */
+  height: 725px; /* Slightly taller than page-flip */
+  background: #34495e;
+  z-index: -1;
+  transform: translateZ(-20px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+.coverFront, .coverBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #34495e;
+  border-radius: 3px;
+}
+
+.coverSpine {
+  position: absolute;
+  width: 50px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #2c3e50, #34495e);
+}

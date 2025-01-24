@@ -5,25 +5,36 @@ import styles from '../../styles/Book.module.css';
 
 export default function Book() {
   const bookRef = useRef();
-  const [currentPage, setCurrentPage] = useState(1); // Start after cover
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
     const flipInterval = setInterval(() => {
-      if (bookRef.current) {
+      if (bookRef.current && !isFlipping) {
         if (currentPage >= bookContent.length - 1) {
-          // Reset to first content page when reaching the end
-          bookRef.current.pageFlip().flip(1);
-          setCurrentPage(1);
+          setIsFlipping(true);
+          bookRef.current.pageFlip().turnToPage(2);
+          bookRef.current.pageFlip().flipPrev();
+          
+          // Wait for flip animation to complete
+          setTimeout(() => {
+            setCurrentPage(1);
+            setIsFlipping(false);
+          }, 1000); // Match this with flippingTime prop
         } else {
-          // Flip to next page
+          setIsFlipping(true);
           bookRef.current.pageFlip().flipNext();
-          setCurrentPage(prev => prev + 1);
+          
+          setTimeout(() => {
+            setCurrentPage(prev => prev + 1);
+            setIsFlipping(false);
+          }, 5000);
         }
       }
-    }, 5000); // Flip every 5 seconds
+    }, 1000);
 
     return () => clearInterval(flipInterval);
-  }, [currentPage]);
+  }, [currentPage, isFlipping]);
 
   const renderPage = (content) => {
     if (content.type === 'image') {

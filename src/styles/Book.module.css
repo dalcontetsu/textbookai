@@ -85,7 +85,7 @@
 .hardcover {
   position: absolute;
   width: 1250px;  /* Slightly wider than page-flip */
-  height: 725px; /* Slightly taller than page-flip */
+  height: 710px; /* Slightly taller than page-flip */
   background: #34495e;
   z-index: -1;
   transform: translateZ(-20px);

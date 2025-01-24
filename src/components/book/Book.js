@@ -1,10 +1,56 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { bookContent } from '../../data/bookContent';
 import styles from '../../styles/Book.module.css';
 
 export default function Book() {
   const bookRef = useRef();
+  const [currentPage, setCurrentPage] = useState(1); // Start after cover
+
+  useEffect(() => {
+    const flipInterval = setInterval(() => {
+      if (bookRef.current) {
+        if (currentPage >= bookContent.length - 1) {
+          // Reset to first content page when reaching the end
+          bookRef.current.pageFlip().flip(1);
+          setCurrentPage(1);
+        } else {
+          // Flip to next page
+          bookRef.current.pageFlip().flipNext();
+          setCurrentPage(prev => prev + 1);
+        }
+      }
+    }, 5000); // Flip every 5 seconds
+
+    return () => clearInterval(flipInterval);
+  }, [currentPage]);
+
+  const renderPage = (content) => {
+    if (content.type === 'image') {
+      return (
+        <div className={styles.bookPage}>
+          <div className={styles.pageContent}>
+            <img 
+              src={content.content} 
+              alt="Page illustration"
+              className={styles.pageImage}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    if (content.type === 'content') {
+      return (
+        <div className={styles.bookPage}>
+          <div className={styles.pageContent}>
+            <h2 className={styles.pageTitle}>{content.title}</h2>
+            <p className={styles.pageDescription}>{content.description}</p>
+          </div>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className={styles.bookWrapper}>
@@ -32,31 +78,10 @@ export default function Book() {
           startPage={1}
           drawShadow={true}
           autoSize={true}
-          disableFlipToStart={true}
           ref={bookRef}
         >
-          {/* Cover Page */}
-          <div className={`${styles.bookPage} ${styles.pageCover}`}>
-            <div className={styles.pageContent}>
-              <h1>My Book Title</h1>
-            </div>
-          </div>
-          
-          {/* Content Pages */}
           {bookContent.map((content, index) => (
-            <div key={index} className={styles.bookPage}>
-              <div className={styles.pageContent}>
-                <h2 className={styles.pageTitle}>{content.title}</h2>
-                {content.image && (
-                  <img 
-                    src={content.image} 
-                    alt={content.title}
-                    className={styles.pageImage}
-                  />
-                )}
-                <p className={styles.pageDescription}>{content.description}</p>
-              </div>
-            </div>
+            renderPage(content)
           ))}
         </HTMLFlipBook>
       </div>

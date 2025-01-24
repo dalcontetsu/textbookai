@@ -1,89 +1,59 @@
-import { useState, useEffect, useCallback } from 'react';
-import { bookContent, bookSettings } from '../../data/bookContent';
-import BookPage from './BookPage';
-import BookControls from './BookControls';
+import { useRef } from 'react';
+import HTMLFlipBook from 'react-pageflip';
+import { bookContent } from '../../data/bookContent';
 import styles from '../../styles/Book.module.css';
 
-//console.log("Received book content:", bookContent)
 export default function Book() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const totalPages = 0;
-  const pageStack = Array.from({ length: totalPages }, (_, i) => i);
-  
-  const currentContent = bookContent[currentPage];
-
-  const flipToNextPage = useCallback(() => {
-    if (isFlipping || isPaused) return;
-    
-    setIsFlipping(true);
-    setTimeout(() => {
-      setCurrentPage((prev) => (prev + 1) % bookContent.length);
-      setIsFlipping(false);
-    }, bookSettings.flipDuration);
-  }, [isFlipping, isPaused]);
-
-  useEffect(() => {
-    if (!bookSettings.autoPlay) return;
-
-    const interval = setInterval(() => {
-      flipToNextPage();
-    }, bookSettings.pageDisplayTime);
-
-    return () => clearInterval(interval);
-  }, [flipToNextPage]);
-
-  {/*}
-  useEffect(() => {
-    if (bookContent && bookContent.length > 0) {
-      setIsLoading(false);
-    }
-  }, []);
-
-  
-
-  if (isLoading) {
-    return <div className="book-loading">Loading...</div>;
-  }*/}
+  const bookRef = useRef();
 
   return (
     <div className={styles.bookWrapper}>
       <div className={styles.bookContainer}>
-        <div className={`${styles.book} ${isFlipping ? styles.flipping : ''}`}>
-          <div className={styles.bookSpine} />
-          <div className={styles.bookCover} />
-          {pageStack.map((pageNum) => (
-            <div 
-              key={pageNum}
-              className={styles.stackedPage}
-              style={{
-                transform: `translateZ(${-pageNum * 10}px)`,
-                zIndex: -pageNum
-              }}
-            />
+        <HTMLFlipBook 
+          width={800}
+          height={900}
+          size="stretch"
+          minWidth={300}
+          maxWidth={1000}
+          minHeight={400}
+          maxHeight={800}
+          showCover={true}
+          mobileScrollSupport={true}
+          className={styles.book}
+          flippingTime={1000}
+          maxShadowOpacity={0.5}
+          usePortrait={false}
+          startPage={1}
+          drawShadow={true}
+          autoSize={true}
+          disableFlipToStart={true}
+          ref={bookRef}
+        >
+          {/* Cover Page */}
+          <div className={`${styles.bookPage} ${styles.pageCover}`}>
+            <div className={styles.pageContent}>
+              <h1>My Book Title</h1>
+            </div>
+          </div>
+          
+          {/* Content Pages */}
+          {bookContent.map((content, index) => (
+            <div key={index} className={styles.bookPage}>
+              <div className={styles.pageContent}>
+                <h2 className={styles.pageTitle}>{content.title}</h2>
+                {content.image && (
+                  <img 
+                    src={content.image} 
+                    alt={content.title}
+                    className={styles.pageImage}
+                  />
+                )}
+                <p className={styles.pageDescription}>{content.description}</p>
+              </div>
+            </div>
           ))}
-          <BookPage 
-            title={currentContent.title}
-            description={currentContent.description}
-            image={currentContent.image}
-            isLeft={true}
-            styles={styles}
-          />
-          <BookPage 
-            title={currentContent.title}
-            description={currentContent.description}
-            image={currentContent.image}
-            isLeft={false}
-            styles={styles}
-          />
-        </div>
+        </HTMLFlipBook>
       </div>
-      <BookControls 
-        onNext={flipToNextPage}
-        onPause={() => setIsPaused(!isPaused)}
-        isPaused={isPaused}
-      />
     </div>
   );
 }

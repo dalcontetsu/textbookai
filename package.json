@@ -1,27 +1,20 @@
 {
-  "dependencies": {
-    "@mantine/core": "^7.16.0",
-    "@mantine/hooks": "^7.16.0",
-    "@zeit/next-css": "^1.0.1",
-    "aws-sdk": "^2.1692.0",
-    "idb": "^8.0.1",
-    "next": "^15.1.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-dropzone": "^14.3.5",
-    "react-pageflip": "^2.0.3",
-    "react-pdf": "^9.2.1"
-  },
   "name": "textbookai",
-  "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.2.1"
+  }
 }

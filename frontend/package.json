@@ -12,7 +12,7 @@
     "react-pageflip": "^2.0.3",
     "react-pdf": "^9.2.1"
   },
-  "name": "textbookai",
+  "name": "textbookai-frontend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

@@ -6,11 +6,32 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchUserData = async (token) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/user', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+      } else {
+        localStorage.removeItem('token');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      localStorage.removeItem('token');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    // Check for stored token on mount
     const token = localStorage.getItem('token');
     if (token) {
-      // Validate token and fetch user data
       fetchUserData(token);
     } else {
       setLoading(false);
@@ -19,13 +40,11 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      console.log('Attempting login...');
       const response = await fetch('http://localhost:8000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      console.log('Response:', response);
       const data = await response.json();
       
       if (response.ok) {

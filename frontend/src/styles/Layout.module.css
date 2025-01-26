@@ -87,3 +87,37 @@
     color: #0070f3;
   }
   
+  .profileMenu {
+    position: relative;
+  }
+  
+  .profileButton {
+    padding: 8px 16px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  
+  .menuItems {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 4px;
+  }
+  
+  .menuItem {
+    display: block;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+  }
+  
+  .activeMenuItem {
+    background: #f3f4f6;
+  }
+  

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@mantine/core": "^7.16.0",
     "@mantine/hooks": "^7.16.0",
     "@zeit/next-css": "^1.0.1",

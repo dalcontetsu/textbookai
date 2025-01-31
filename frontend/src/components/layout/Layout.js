@@ -3,9 +3,13 @@ import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
 import styles from '../../styles/Layout.module.css'
 import UserProfile from '../UserProfile'
+import { useState } from 'react'
+import Modal from '../Modal'
+import LoginForm from '../auth/LoginForm'
 
 export default function Layout({ children }) {
-  const { user, logout } = useAuth()
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const { user } = useAuth()
 
   return (
     <div className={styles.container}>
@@ -26,9 +30,12 @@ export default function Layout({ children }) {
             <UserProfile />
           ) : (
             <>
-              <Link href="/login">
-                <button className={styles.loginBtn}>Log In</button>
-              </Link>
+              <button 
+                onClick={() => setIsLoginModalOpen(true)} 
+                className={styles.loginBtn}
+              >
+                Log In
+              </button>
               <Link href="/signup">
                 <button className={styles.signupBtn}>Sign Up</button>
               </Link>
@@ -36,6 +43,14 @@ export default function Layout({ children }) {
           )}
         </div>
       </nav>
+
+      <Modal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)}
+      >
+        <LoginForm onSuccess={() => setIsLoginModalOpen(false)} />
+      </Modal>
+
       <main className={styles.mainContent}>{children}</main>
       <footer className={styles.footer}>
         <div className={styles.footerContent}>

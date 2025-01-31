@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import styles from '../../styles/Auth.module.css'
 
-export default function LoginForm() {
+export default function LoginForm({ onSuccess }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -13,7 +13,9 @@ export default function LoginForm() {
     setError('')
     
     const result = await login(email, password)
-    if (!result.success) {
+    if (result.success) {
+      onSuccess() // Call the success callback after successful login
+    } else {
       setError(result.error)
     }
   }

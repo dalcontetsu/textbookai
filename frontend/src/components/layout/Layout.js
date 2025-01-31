@@ -6,9 +6,11 @@ import UserProfile from '../UserProfile'
 import { useState } from 'react'
 import Modal from '../Modal'
 import LoginForm from '../auth/LoginForm'
+import SignupForm from '../auth/SignupForm'  // New import
 
 export default function Layout({ children }) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false)
   const { user } = useAuth()
 
   return (
@@ -36,9 +38,12 @@ export default function Layout({ children }) {
               >
                 Log In
               </button>
-              <Link href="/signup">
-                <button className={styles.signupBtn}>Sign Up</button>
-              </Link>
+              <button 
+                onClick={() => setIsSignupModalOpen(true)} 
+                className={styles.signupBtn}
+              >
+                Sign Up
+              </button>
             </>
           )}
         </div>
@@ -49,6 +54,13 @@ export default function Layout({ children }) {
         onClose={() => setIsLoginModalOpen(false)}
       >
         <LoginForm onSuccess={() => setIsLoginModalOpen(false)} />
+      </Modal>
+
+      <Modal 
+        isOpen={isSignupModalOpen} 
+        onClose={() => setIsSignupModalOpen(false)}
+      >
+        <SignupForm onSuccess={() => setIsSignupModalOpen(false)} />
       </Modal>
 
       <main className={styles.mainContent}>{children}</main>

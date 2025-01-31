@@ -130,3 +130,102 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* User Profile Styles */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.user-email {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Profile dropdown menu */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Add padding to create an invisible bridge between profile and dropdown */
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  /* Add padding on top to create hover bridge */
+  padding-top: 0.5rem;
+  /* Move menu up to compensate for padding */
+  top: calc(100% - 0.5rem);
+  background: white;
+  min-width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  /* Change display property to use opacity instead */
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.profile-dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--background-light);
+  color: var(--primary-color);
+}

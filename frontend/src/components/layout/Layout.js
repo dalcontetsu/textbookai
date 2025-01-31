@@ -1,7 +1,8 @@
-import { Menu } from '@headlessui/react'
+//import { Menu } from '@headlessui/react'
 import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
 import styles from '../../styles/Layout.module.css'
+import UserProfile from '../UserProfile'
 
 export default function Layout({ children }) {
   const { user, logout } = useAuth()
@@ -22,43 +23,7 @@ export default function Layout({ children }) {
 
         <div className={styles.authButtons}>
           {user ? (
-            <Menu as="div" className={styles.profileMenu}>
-              <Menu.Button className={styles.profileButton}>
-                {user.email}
-              </Menu.Button>
-              <Menu.Items className={styles.menuItems}>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      href="/profile"
-                      className={`${styles.menuItem} ${active && styles.activeMenuItem}`}
-                    >
-                      Profile
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      href="/settings"
-                      className={`${styles.menuItem} ${active && styles.activeMenuItem}`}
-                    >
-                      Settings
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      onClick={logout}
-                      className={`${styles.menuItem} ${active && styles.activeMenuItem}`}
-                    >
-                      Logout
-                    </button>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
+            <UserProfile />
           ) : (
             <>
               <Link href="/login">
